@@ -1177,3 +1177,447 @@ opacity: 0;
         }
 
         .newsletter-input:focus {
+newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .newsletter-btn {
+            position: absolute;
+            right: 0.375rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(255, 103, 0, 0.4);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .navbar .btn-primary {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .about-badge {
+                width: 100px;
+                height: 100px;
+                right: 0;
+            }
+
+            .about-badge-number {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--accent);
+            border-radius: 0.75rem;
+            color: var(--text-cream);
+            font-size: 0.9rem;
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.3s;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#home" class="logo">Chillox <span class="logo-dot"></span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reservation">Contact</a></li>
+        </ul>
+        <button class="btn-primary" onclick="scrollToSection('reservation')">Reserve Table</button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars" id="menu-icon"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#home" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#menu" onclick="closeMobileMenu()">Menu</a>
+        <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+        <a href="#reservation" onclick="closeMobileMenu()">Contact</a>
+        <button class="btn-primary" onclick="scrollToSection('reservation'); closeMobileMenu();">Reserve Table</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="floating-elements">
+            <div class="float-el float-el-1"></div>
+            <div class="float-el float-el-2"></div>
+            <div class="float-el float-el-3"></div>
+            <div class="float-el float-el-4"></div>
+            <div class="float-el float-el-5"></div>
+            <div class="float-el-glow"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-tagline">Taste the Mystery of Asia</p>
+            <h1 class="hero-title">A Culinary<br><span class="text-glow">Journey</span> Awaits</h1>
+            <p class="hero-description">Experience the finest Asian fusion cuisine in an atmosphere of elegance and sophistication. Every dish tells a story of tradition and innovation.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('reservation')">Reserve a Table</button>
+                <button class="btn-secondary" onclick="scrollToSection('menu')">Explore Menu</button>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('about')">
+            <span>SCROLL</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1681889870636-3f58e5288e03?w=800&q=80" alt="Our Chef">
+                    </div>
+                    <div class="about-badge">
+                        <span class="about-badge-number">15</span>
+                        <span class="about-badge-text">YEARS</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <p class="section-label">Our Story</p>
+                    <h2 class="section-title">Where Tradition<br><span class="text-glow">Meets Innovation</span></h2>
+                    <p class="about-text">Founded in 2009, Chillox has been a culinary landmark in Dhaka, bringing the finest flavors of Asia to your table. Our master chefs, trained in the traditional kitchens of Tokyo, Bangkok, and Beijing, create dishes that honor centuries-old recipes while embracing modern culinary artistry.</p>
+                    <p class="about-text">Every ingredient is carefully sourced, every dish meticulously crafted. From the first bite to the last, we promise an unforgettable journey through the diverse and vibrant flavors of Asian cuisine.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-award"></i></div>
+                            <div>
+                                <div class="stat-value">15+</div>
+                                <div class="stat-label">Years of Excellence</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div>
+                                <div class="stat-value">50k+</div>
+                                <div class="stat-label">Happy Guests</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+                            <div>
+                                <div class="stat-value">120+</div>
+                                <div class="stat-label">Signature Dishes</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Premium Service</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="menu-header">
+                <p class="section-label">Culinary Excellence</p>
+                <h2 class="section-title">Our <span class="text-glow">Menu</span></h2>
+                <p class="section-description">Discover our carefully curated selection of dishes, each crafted with passion and the finest ingredients from across Asia.</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="appetizers">Appetizers</button>
+                <button class="menu-tab" data-category="main">Main Course</button>
+                <button class="menu-tab" data-category="desserts">Desserts</button>
+                <button class="menu-tab" data-category="drinks">Drinks</button>
+            </div>
+            <div class="menu-grid" id="menu-grid"></div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <p class="section-label">Visual Journey</p>
+                <h2 class="section-title">Our <span class="text-glow">Gallery</span></h2>
+                <p class="section-description">A glimpse into the world of Chillox — where every corner, every dish, and every moment is crafted for perfection.</p>
+            </div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <span id="lightbox-category"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservation Section -->
+    <section class="reservation" id="reservation">
+        <div class="reservation-bg"></div>
+        <div class="reservation-overlay"></div>
+        <div class="container reservation-content">
+            <div class="reservation-header">
+                <p class="section-label">Book Your Experience</p>
+                <h2 class="section-title">Make a <span class="text-glow">Reservation</span></h2>
+                <p class="section-description">Reserve your table for an unforgettable dining experience. We recommend booking in advance for weekend evenings.</p>
+            </div>
+            <div class="reservation-grid">
+                <div class="reservation-form">
+                    <form id="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" class="form-input" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" class="form-input" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone *</label>
+                                <input type="tel" class="form-input" placeholder="+880 1XXX-XXXXXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Guests *</label>
+                                <select class="form-input" required>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2" selected>2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7 Guests</option>
+                                    <option value="8">8 Guests</option>
+                                    <option value="9">9+ (Contact us)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date *</label>
+                                <input type="date" class="form-input" required id="date-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Time *</label>
+                                <select class="form-input" required>
+                                    <option value="">Select time</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Special Requests</label>
+                            <textarea class="form-input" placeholder="Dietary restrictions, special occasions, seating preferences..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit">
+                            <i class="fas fa-paper-plane"></i> Reserve Table
+                        </button>
+                    </form>
+                    <div class="form-success" id="form-success">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Reservation Received!</h3>
+                        <p>Thank you for choosing Chillox. We'll contact you shortly to confirm.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-card-inner">
+                                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Khilgaon, Dhaka, Bangladesh</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-inner">
+                                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>+880 1XXX-XXXXXX</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-inner">
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>reservations@chillox.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-card-inner">
+                                <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <h4>Hours</h4>
+                                    <p>Mon-Sun: 12PM - 11PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14605.767903566684!2d90.42611885!3d23.7537918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9e5c7e8c8ad%3A0x8e8e8b8c8d8c8b8a!2sKhilgaon%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1699999999999!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+                        <a href="https://www.google.com/maps/search/Khilgaon,+Dhaka,+Bangladesh" target="_blank" class="map-link">
+                            Open in Maps <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">Chillox <span class="logo-dot"></span></a>
+                    <p>Experience the finest Asian fusion cuisine in Dhaka. Where tradition meets innovation, and every meal becomes a memorable journey.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Our Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+              
